@@ -18,7 +18,11 @@ public class BarangServiceImpl implements BarangService{
 //    post
     @Override
     public Barang addBarang(Barang barang) {
-        return barangRepository.save(barang);
+        try {
+            return barangRepository.save(barang);
+        } catch (Exception e) {
+            throw new InternalErrorException("Kesalahan memasukkan data");
+        }
     }
 
 //    get by id
@@ -40,14 +44,18 @@ public class BarangServiceImpl implements BarangService{
 //    update
     @Override
     public Barang updateBarang(Integer id, String name, Float price, Integer count, Integer reting, String description, Boolean publish) {
-        Barang barang = barangRepository.findById(id).get();
-        barang.setName(name);
-        barang.setPrice(price);
-        barang.setCount(count);
-        barang.setReting(reting);
-        barang.setDescription(description);
-        barang.setPublish(publish);
-        return barangRepository.save(barang);
+        try {
+            Barang barang = barangRepository.findById(id).get();
+            barang.setName(name);
+            barang.setPrice(price);
+            barang.setCount(count);
+            barang.setReting(reting);
+            barang.setDescription(description);
+            barang.setPublish(publish);
+            return barangRepository.save(barang);
+        } catch (Exception e) {
+            throw new InternalErrorException("Kesalahan memasukkan data");
+        }
     }
 
 //    delete
