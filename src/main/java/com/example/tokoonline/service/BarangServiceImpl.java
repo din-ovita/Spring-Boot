@@ -21,18 +21,14 @@ public class BarangServiceImpl implements BarangService{
         try {
             return barangRepository.save(barang);
         } catch (Exception e) {
-            throw new InternalErrorException("Kesalahan memasukkan data");
+            throw new InternalErrorException("Data harus diisi semua");
         }
     }
 
 //    get by id
     @Override
     public Barang getBarangById(Integer id) {
-        try {
             return barangRepository.findById(id).orElseThrow(() -> new NotFoundException("Id tidak ditemukan"));
-        } catch (Exception e) {
-            throw new InternalErrorException("Kesalahan memasukkan data");
-        }
     }
 
 //    get all

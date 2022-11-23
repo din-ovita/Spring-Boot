@@ -22,4 +22,9 @@ public class GlobalException {
     public ResponseEntity<?> emailCondition(EmailCondition emailCondition) {
         return ResponseHelper.error(emailCondition.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<?> badRequestException(BadRequestException badRequestException) {
+        return ResponseHelper.error(badRequestException.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }
