@@ -2,6 +2,7 @@ package com.example.tokoonline.auditing;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -17,15 +18,15 @@ public class Auditable {
 //    json format
     @JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")
 //    to menampung keterangan waktu skrng
-    @CreationTimestamp
-    @Column(name = "created_at", updatable = false)
+    @CreatedDate()
+    @Column(name = "tanggal_dibuat", updatable = false)
     private Date createdAt;
 
 //    format GMT 0, pusat dunia, London
     @JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")
 //    perubahan data : terakhir di update
     @LastModifiedDate
-    @Column(name = "update_at")
+    @Column(name = "terakhir_update")
     private Date updatedAt;
 
     public Date getCreatedAt() {

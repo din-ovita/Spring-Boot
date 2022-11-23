@@ -1,6 +1,5 @@
 package com.example.tokoonline.service;
 
-import com.example.tokoonline.exception.BadRequestException;
 import com.example.tokoonline.exception.EmailCondition;
 import com.example.tokoonline.exception.InternalErrorException;
 import com.example.tokoonline.exception.NotFoundException;
