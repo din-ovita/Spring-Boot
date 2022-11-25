@@ -9,7 +9,7 @@ public interface OrderService {
 
     Order getOrderById(Integer id);
 
-    Order updateOrder(Integer id, String namaBarang, String harga, String pemilik);
+    Order updateOrder(Integer id, String namaBarang, String harga);
 
     List<Order> getAllOrder();
 

@@ -1,8 +1,10 @@
 package com.example.tokoonline.controller;
 
+import com.example.tokoonline.dto.OrderDTO;
 import com.example.tokoonline.model.Order;
 import com.example.tokoonline.response.ResponseHelper;
 import com.example.tokoonline.service.OrderService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +15,12 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @PostMapping
-    public ResponseEntity<?> addOrder(@RequestBody Order order) {
-        return ResponseHelper.ok(orderService.addOrder(order));
+    public ResponseEntity<?> create(@RequestBody OrderDTO orderDTO) {
+        return ResponseHelper.ok(orderService.addOrder(modelMapper.map(orderDTO, Order.class)));
     }
 
     @GetMapping("/{id}")
@@ -30,7 +35,7 @@ public class OrderController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateOrder(@PathVariable("id") Integer id, @RequestBody Order order ) {
-        return ResponseHelper.ok(orderService.updateOrder(id, order.getNamaBarang(), order.getHarga(), order.getPemilik()));
+        return ResponseHelper.ok(orderService.updateOrder(id, order.getNamaBarang(), order.getHarga()));
     }
 
     @DeleteMapping("/{id}")

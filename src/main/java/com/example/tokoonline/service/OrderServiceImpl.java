@@ -20,7 +20,11 @@ public class OrderServiceImpl implements OrderService{
         if (orderRepository.findByPemilik(order.getPemilik()).isPresent()) {
             throw new EmailCondition("Email already exist");
         }
-        return orderRepository.save(order);
+        try {
+            return orderRepository.save(order);
+        } catch (Exception e) {
+            throw new InternalErrorException("Data harus diisi semua");
+        }
     }
 
     @Override
@@ -39,11 +43,10 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public Order updateOrder(Integer id, String namaBarang, String harga, String pemilik) {
+    public Order updateOrder(Integer id, String namaBarang, String harga) {
         Order order = orderRepository.findById(id).get();
         order.setHarga(harga);
         order.setNamaBarang(namaBarang);
-        order.setPemilik(pemilik);
         return orderRepository.save(order);
     }
 
