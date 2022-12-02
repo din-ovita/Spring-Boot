@@ -1,6 +1,7 @@
 package com.example.tokoonline.controller;
 
 import com.example.tokoonline.model.User;
+import com.example.tokoonline.response.CommonResponse;
 import com.example.tokoonline.response.ResponseHelper;
 import com.example.tokoonline.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,25 +18,25 @@ public class UserController {
 
 //    post
     @PostMapping
-    public ResponseEntity<?> addUser(@RequestBody User user) {
+    public CommonResponse<User> addUser(@RequestBody User user) {
         return ResponseHelper.ok(userService.addUser(user));
     }
 
 // get by id
     @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable("id") Integer id) {
+    public CommonResponse<User> getUserById(@PathVariable("id") Integer id) {
         return ResponseHelper.ok(userService.getUserById(id));
     }
 
 //    get all
     @GetMapping("/all-user")
-    public ResponseEntity<?> getAllUser() {
+    public CommonResponse<List<User>> getAllUser() {
         return ResponseHelper.ok(userService.getAllUser());
     }
 
 //    update
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable("id") Integer id, @RequestBody User user) {
+    public CommonResponse<User> updateUser(@PathVariable("id") Integer id, @RequestBody User user) {
         return ResponseHelper.ok(userService.updateUser(id, user.getUsername(), user.getEmail(), user.getAge(), user.getAddress(), user.getPhoneNumber()));
     }
 

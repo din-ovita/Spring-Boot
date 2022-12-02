@@ -1,6 +1,7 @@
 package com.example.tokoonline.model;
 
 import com.example.tokoonline.auditing.Auditable;
+import com.example.tokoonline.enumated.UserType;
 
 import javax.persistence.*;
 
@@ -27,16 +28,17 @@ public class User extends Auditable {
     @Column(name = "phone_number")
     private Integer phoneNumber = 0;
 
+    @Column(name = "password")
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_type")
+    private UserType userType;
+
     public User() {
     }
 
-    public User(String username, String email, Integer age, String address, Integer phoneNumber) {
-        this.username = username;
-        this.email = email;
-        this.age = age;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-    }
+
 
     public Integer getId() {
         return id;
@@ -84,6 +86,22 @@ public class User extends Auditable {
 
     public void setPhoneNumber(Integer phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
     @Override

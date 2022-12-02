@@ -4,12 +4,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 public class ResponseHelper {
-    public static <T>ResponseEntity<CommonResponse<T>> ok(T data) {
+    public static <T> CommonResponse<T> ok(T data) {
         CommonResponse<T> response = new CommonResponse<>();
-        response.setMessage("SUCCESS");
+        response.setMessage("SUCCEpppS");
         response.setStatus("200");
         response.setData(data);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return response;
     }
 
     public static <T> ResponseEntity<CommonResponse<T>> error(String error, HttpStatus httpStatus) {
